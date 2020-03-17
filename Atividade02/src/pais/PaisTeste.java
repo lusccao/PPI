@@ -1,6 +1,5 @@
 package pais;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -28,6 +27,7 @@ public class PaisTeste {
 		System.out.println(pais);
 		System.out.println(copia);
 		System.out.println(id);
+		System.out.println("____________________________\n");
 	}
 	
 	@Test
@@ -80,12 +80,14 @@ public class PaisTeste {
 		assertEquals("testa Busca Hab", novoService.PaisMaisHab());
 	}
 	
+	@Test
 	public void test05BuscaMenorArea() {
 		System.out.println("Busca Menor area");
 		PaisService novoService = new PaisService();
 		assertEquals("testa Busca Area", novoService.PaisMenorArea());
 	}
 	
+	@Test
 	public void test05VetorTresPaises() {
 		System.out.println("Três Paises");
 		PaisService novoService = new PaisService();

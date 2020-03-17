@@ -84,7 +84,7 @@ public class PaisDAO {
 	
 	public Pais BuscaMaisHab() {
 		Pais pais = new Pais();
-		String sqlSelect = "SELECT nome, populacao order by populacao desc limit 0,5";
+		String sqlSelect = "SELECT nome, populacao FROM faculdade.Pais order by populacao desc limit 0,5";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, pais.getId());
@@ -96,7 +96,7 @@ public class PaisDAO {
 	
 	public Pais BuscaMenorArea() {
 		Pais pais = new Pais();
-		String sqlSelect = "SELECT nome, area order by area asc limit 0,5";
+		String sqlSelect = "SELECT nome, area FROM faculdade.Pais order by area asc limit 0,1";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, pais.getId());
@@ -108,7 +108,7 @@ public class PaisDAO {
 	
 	public Pais VetorTresPaises() {
 		Pais pais = new Pais();
-		String sqlSelect = "SELECT nome, populacao, area order limit 3";
+		String sqlSelect = "SELECT nome, populacao, area FROM faculdade.Pais limit 3";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, pais.getId());
