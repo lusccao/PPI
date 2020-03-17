@@ -1,5 +1,7 @@
 package pais;
 
+import pais.Pais;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
