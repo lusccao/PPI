@@ -81,5 +81,41 @@ public class PaisDAO {
 		}
 		return pais;
 	}
+	
+	public Pais BuscaMaisHab() {
+		Pais pais = new Pais();
+		String sqlSelect = "SELECT nome, populacao order by populacao desc limit 0,5";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, pais.getId());
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return pais;
+	}
+	
+	public Pais BuscaMenorArea() {
+		Pais pais = new Pais();
+		String sqlSelect = "SELECT nome, area order by area asc limit 0,5";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, pais.getId());
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return pais;
+	}
+	
+	public Pais VetorTresPaises() {
+		Pais pais = new Pais();
+		String sqlSelect = "SELECT nome, populacao, area order limit 3";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, pais.getId());
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return pais;
+	}
 
 }

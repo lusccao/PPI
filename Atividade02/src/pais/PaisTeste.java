@@ -41,4 +41,53 @@ public class PaisTeste {
 		Pais novo = novoService.carregar(1);
 		assertEquals("testa inclusao", novo, fixture);
 	}
+	
+	@Test
+	public void test01Criar() {
+		System.out.println("criar");
+		id = paisService.criar(pais);
+		System.out.println(id);
+		copia.setId(id);
+		assertEquals("testa criacao", pais, copia);
+	}
+	
+	@Test
+	public void test02Atualizar() {
+		System.out.println("atualizar");
+		pais.setPopulacao(230000);
+		copia.setPopulacao(230000);		
+		paisService.atualizar(pais);
+		pais = paisService.carregar(pais.getId());
+		assertEquals("testa atualizacao", pais, copia);
+	}
+	
+	public void test03Excluir() {
+		System.out.println("excluir");
+		copia.setId(-1);
+		copia.setNome(null);
+		copia.setPopulacao(0);
+		copia.setArea(0);
+		paisService.excluir(id);
+		pais = paisService.carregar(id);
+		assertEquals("testa exclusao", pais, copia);
+	}
+	
+	@Test
+	public void test04BuscaMaisHab() {
+		System.out.println("Busca Pais mais habitado");
+		PaisService novoService = new PaisService();
+		assertEquals("testa Busca Hab", novoService.PaisMaisHab());
+	}
+	
+	public void test05BuscaMenorArea() {
+		System.out.println("Busca Menor area");
+		PaisService novoService = new PaisService();
+		assertEquals("testa Busca Area", novoService.PaisMenorArea());
+	}
+	
+	public void test05VetorTresPaises() {
+		System.out.println("Três Paises");
+		PaisService novoService = new PaisService();
+		assertEquals("testa Busca Area", novoService.VetorTresPaises());
+	}
 }

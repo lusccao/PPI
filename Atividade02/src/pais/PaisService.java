@@ -18,4 +18,16 @@ public class PaisService {
 	public Pais carregar(int id){
 		return dao.carregar(id);
 	}
+	
+	public Pais PaisMaisHab(){
+		return dao.BuscaMaisHab();
+	}
+	
+	public Pais PaisMenorArea(){
+		return dao.BuscaMenorArea();
+	}
+	
+	public Pais VetorTresPaises(){
+		return dao.VetorTresPaises();
+	}
 }
