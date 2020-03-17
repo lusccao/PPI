@@ -31,7 +31,7 @@ public class PaisDAO {
 	}
 
 	public void atualizar(Pais pais) {
-		String sqlUpdate = "UPDATE Pais SET nome=?, populacao=?, area=? WHERE id=?";
+		String sqlUpdate = "UPDATE faculdade.Pais SET nome=?, populacao=?, area=? WHERE id=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setString(1, pais.getNome());
@@ -45,7 +45,7 @@ public class PaisDAO {
 	}
 
 	public void excluir(int id) {
-		String sqlDelete = "DELETE FROM cliente WHERE id = ?";
+		String sqlDelete = "DELETE FROM faculdade.Pais WHERE id = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
 			stm.setInt(1, id);
@@ -58,7 +58,7 @@ public class PaisDAO {
 	public Pais carregar(int id) {
 		Pais pais = new Pais();
 		pais.setId(id);
-		String sqlSelect = "SELECT nome, populacao, area FROM Pais WHERE pais.id = ?";
+		String sqlSelect = "SELECT nome, populacao, area FROM faculdade.Pais WHERE id = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, pais.getId());

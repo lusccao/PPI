@@ -43,4 +43,9 @@ public class Pais implements Serializable{
 	public void setArea(double area) {
 		this.area = area;
 	}
+	
+	public String toString() {
+		return "Pais [id=" + id + ", nome=" + nome + ", populacao=" + populacao
+				+ ", area=" + area + "]";
+	}
 }
