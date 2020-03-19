@@ -45,7 +45,7 @@ public class PaisDAO {
 	}
 
 	public void excluir(int id) {
-		String sqlDelete = "DELETE FROM faculdade.Pais WHERE id = ?";
+		String sqlDelete = "DELETE FROM Pais WHERE id = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
 			stm.setInt(1, id);
@@ -81,36 +81,68 @@ public class PaisDAO {
 		}
 		return pais;
 	}
-	
+
 	public Pais BuscaMaisHab() {
 		Pais pais = new Pais();
-		String sqlSelect = "SELECT nome, populacao FROM faculdade.Pais order by populacao desc limit 0,5";
+		String sqlSelect = "SELECT nome, populacao, area FROM faculdade.Pais order by populacao asc limit 0,1";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					pais.setNome(rs.getString("nome"));
+					pais.setPopulacao(rs.getLong("populacao"));
+					pais.setArea(rs.getDouble("area"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			stm.setInt(1, pais.getId());
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
 		return pais;
 	}
-	
+
 	public Pais BuscaMenorArea() {
 		Pais pais = new Pais();
-		String sqlSelect = "SELECT nome, area FROM faculdade.Pais order by area asc limit 0,1";
+		String sqlSelect = "SELECT nome, populacao, area FROM faculdade.Pais order by area asc limit 0,1;";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					pais.setNome(rs.getString("nome"));
+					pais.setPopulacao(rs.getLong("populacao"));
+					pais.setArea(rs.getDouble("area"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			stm.setInt(1, pais.getId());
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
 		return pais;
 	}
-	
+
 	public Pais VetorTresPaises() {
-		Pais pais = new Pais();
-		String sqlSelect = "SELECT nome, populacao, area FROM faculdade.Pais limit 3";
+		Pais pais = null;
+		Pais[] vetor = new Pais[4];
+		int count = 0;
+		String sqlSelect = "SELECT * FROM faculdade.Pais limit 3";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					int id = rs.getInt("id");
+					String nome = rs.getString("nome");
+					long populacao = rs.getLong("populacao");
+					double area = rs.getDouble("area");
+					pais = new Pais(id, nome, populacao, area);
+					vetor[count++] = pais;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			stm.setInt(1, pais.getId());
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());

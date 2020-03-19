@@ -11,6 +11,9 @@ public class Pais implements Serializable{
 	
 	public Pais() {
 	}
+	
+	public Pais(int id, String nome, Long populacao, Double area) {
+	}
 
 	public int getId() {
 		return id;
