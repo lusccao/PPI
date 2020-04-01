@@ -58,10 +58,10 @@ public class PaisTeste {
 	@Test
 	public void test02Atualizar() {
 		System.out.println("atualizar");
-		pais = paisService.carregar(31);
 		pais.setPopulacao(230000);
-		copia.setPopulacao(230000);		
+		copia.setPopulacao(230000);
 		paisService.atualizar(pais);
+		pais = paisService.carregar(pais.getId());
 		assertEquals("testa atualizacao", pais, copia);
 	}
 	
