@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,26 +14,8 @@
 </head>
 
 <body>
-    <!-- Barra superior com os menus de navegação -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Cadastro</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">Clientes</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Barra superior com os menus de navegacao -->
+	<c:import url="Menu.jsp"/>
     <!-- Container Principal -->
     <div id="main" class="container">
         <h3 class="page-header">Incluir Cliente</h3>
