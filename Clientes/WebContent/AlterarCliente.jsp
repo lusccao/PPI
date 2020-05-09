@@ -21,7 +21,7 @@
                 <div id="main" class="container">
                     <h3 class="page-header">Alterar Cliente #${cliente.id }</h3>
                     <!-- Formulario para alteração de clientes -->
-                    <form action="ManterCliente.do" method="post">
+                    <form action="controller.do" method="post">
                         <!-- area de campos do form -->
                         <input type="hidden" name="id" value="${cliente.id }" />
                         <div class="row">
@@ -29,7 +29,7 @@
                                 <label for="nome">Nome</label>
                                 <input type="text" class="form-control" name="nome" id="nome" required maxlength="100" placeholder="nome completo" value="${cliente.nome }">
                             </div>
-                        </div>a
+                        </div>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="fone">Celular</label>
@@ -44,7 +44,7 @@
                         <hr />
                         <div id="actions" class="row">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary" name="acao" value="Alterar">Salvar</button>
+                                <button type="submit" class="btn btn-primary" name="command" value="AlterarCliente">Salvar</button>
                                 <a href="ListarClientes.jsp" class="btn btn-default">Cancelar</a>
                             </div>
                         </div>

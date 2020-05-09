@@ -14,13 +14,13 @@
 </head>
 
 <body>
-    <!-- Barra superior com os menus de navegação -->
+    <!-- Barra superior com os menus de navegaÃ§ÃĢo -->
 	<c:import url="Menu.jsp"/>
     <!-- Container Principal -->
     <div id="main" class="container">
         <h3 class="page-header">Incluir Cliente</h3>
         <!-- Formulario para inclusao de clientes -->
-        <form action="ManterCliente.do" method="post">
+        <form action="controller.do" method="post">
             <!-- area de campos do form -->
             <div class="row">
                 <div class="form-group col-md-12">
@@ -36,13 +36,13 @@
 
                 <div class="form-group col-md-6">
                     <label for="email">E-Mail</label>
-                    <input type="email" class="form-control" name="email" id="email" required maxlength="60" placeholder="email obrigatório">
+                    <input type="email" class="form-control" name="email" id="email" required maxlength="60" placeholder="email obrigatÃģrio">
                 </div>
             </div>
             <hr />
             <div id="actions" class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary" name="acao" value="Criar">Salvar</button>
+                    <button type="submit" class="btn btn-primary" name="command" value="CriarCliente">Salvar</button>
                     <a href="index.jsp" class="btn btn-default">Cancelar</a>
                 </div>
             </div>

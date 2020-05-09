@@ -14,12 +14,12 @@ public class PaisService {
 		dao = new PaisDAO();
 	}
 	
-	public int criar(Pais cliente) {
-		return dao.criar(cliente);
+	public int criar(Pais pais) {
+		return dao.criar(pais);
 	}
 	
-	public void atualizar(Pais cliente){
-		dao.atualizar(cliente);
+	public void atualizar(Pais pais){
+		dao.atualizar(pais);
 	}
 	
 	public void excluir(int id){

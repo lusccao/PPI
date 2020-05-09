@@ -28,9 +28,9 @@
                             Deseja realmente excluir este cliente?
                         </div>
                         <div class="modal-footer">
-                            <form action="ManterCliente.do" method="post">
+                            <form action="controller.do" method="post">
                                 <input type="hidden" name="id" id="id_excluir" />
-                                <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
+                                <button type="submit" class="btn btn-primary" name="command" value="ExcluirCliente">Sim</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
                             </form>
                         </div>
@@ -42,7 +42,7 @@
 			<c:import url="Menu.jsp"/>
             <!-- Container Principal -->
             <div id="main" class="container">
-                <form action="listar_clientes.do" method="post">
+                <form action="controller.do" method="post">
                     <div id="top" class="row">
                         <div class="col-md-3">
                             <h2>Clientes</h2>
@@ -52,7 +52,7 @@
                             <div class="input-group h2">
                                 <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Clientes (deixe vazio para trazer todos)">
                                 <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit" name="acao" value="buscar">
+                <button class="btn btn-primary" type="submit" name="command" value="ListarClientesBuscar">
                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 </span>
@@ -96,11 +96,11 @@
                                                 ${cliente.email }
                                             </td>
                                             <td class="actions">
-                                                <a class="btn btn-success btn-xs" href="ManterCliente.do?acao=Visualizar&id=${cliente.id }">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="ManterCliente.do?acao=Editar&id=${cliente.id }">Editar</a>
-                                                <button id="btn${cliente.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-pais="${cliente.id }">Excluir</button>
+                                                <a class="btn btn-success btn-xs" href="controller.do?command=VisualizarCliente&id=${cliente.id }">Visualizar</a>
+                                                <a class="btn btn-warning btn-xs" href="controller.do?command=EditarCliente&id=${cliente.id }">Editar</a>
+                                                <button id="btn${cliente.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${cliente.id }">Excluir</button>
                                             </td>
-                                        </tr>
+                                        </tr>             
                             </c:forEach>
 
                             </tbody>
