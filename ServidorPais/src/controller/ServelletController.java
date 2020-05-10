@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -14,11 +16,17 @@ import command.Command;
 @WebServlet("/controller.do")
 public class ServelletController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	FileWriter logRequest;
 
 	protected void doExecute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			//Começo de criação de LOG
+			logRequest = new FileWriter(new File("/home/lucasarthur/Documentos/logreq"), true);
 			request.setCharacterEncoding("UTF-8");
-			System.out.println(Calendar.getInstance().getTime() + "Chegou um request para" + request.getParameter("command"));
+			logRequest.append("\n" + Calendar.getInstance().getTime() + " Chegou uma requisição de: " + request.getParameter("command"));
+			logRequest.flush();
+			//Fim de criaçãõ de LOG
+			System.out.println("\n" + Calendar.getInstance().getTime() + " Chegou uma requisição de: " + request.getParameter("command"));
 			Command comando = (Command)Class.forName("command."+request.getParameter("command")).newInstance();
 			comando.executar(request, response);
 		} catch (InstantiationException | IllegalAccessException

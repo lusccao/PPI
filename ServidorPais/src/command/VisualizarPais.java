@@ -17,11 +17,15 @@ public class VisualizarPais implements Command{
 		request.setCharacterEncoding("UTF-8");
 		String pId = request.getParameter("id");
 		String pNome = request.getParameter("nome");
-		Long pPopulacao = Long.parseLong(request.getParameter("populacao"));
-        Double pArea = Double.parseDouble(request.getParameter("area"));
+		String pPopulacao = request.getParameter("populacao");
+        String pArea = request.getParameter("area");
 		int id = -1;
+		Long populacao = null;
+		Double area = null;
 		try {
 			id = Integer.parseInt(pId);
+			populacao = Long.parseLong(pPopulacao);
+	        area = Double.parseDouble(pArea);
 		} catch (NumberFormatException e) {
 
 		}
@@ -29,8 +33,8 @@ public class VisualizarPais implements Command{
 		Pais pais = new Pais();
 		pais.setId(id);
 		pais.setNome(pNome);
-		pais.setPopulacao(pPopulacao);
-		pais.setArea(pArea);
+		pais.setPopulacao(populacao);
+		pais.setArea(area);
 		PaisService ps = new PaisService();
 		RequestDispatcher view = null;
 
