@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import dao.ConnectionFactory;
 
 @WebServlet("/controller.do")
 public class ServelletController extends HttpServlet {
@@ -26,7 +28,6 @@ public class ServelletController extends HttpServlet {
 			logRequest.append("\n" + Calendar.getInstance().getTime() + " Chegou uma requisição de: " + request.getParameter("command"));
 			logRequest.flush();
 			//Fim de criaçãõ de LOG
-			System.out.println("\n" + Calendar.getInstance().getTime() + " Chegou uma requisição de: " + request.getParameter("command"));
 			Command comando = (Command)Class.forName("command."+request.getParameter("command")).newInstance();
 			comando.executar(request, response);
 		} catch (InstantiationException | IllegalAccessException
@@ -42,5 +43,23 @@ public class ServelletController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doExecute(request,response);
+	}
+	
+	@Override
+	public void init(){
+		try {
+			ConnectionFactory.obtemConexao();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void destroy(){
+		try {
+			ConnectionFactory.fecharConexao();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
